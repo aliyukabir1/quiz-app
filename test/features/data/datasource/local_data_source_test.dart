@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:quiz_app/features/data/datasource/local_data_source.dart';
@@ -18,14 +16,27 @@ void main() {
   });
 
   test('should return quiz list from local data source', () async {
-    String jsonString = fixture('quiz.json');
+    String jsonString = fixture('quiz_list.json');
 
-    final tQuiz = QuizModel.fromJson(jsonDecode(fixture('quiz.json')));
+    List<QuizModel> quizList = [
+      QuizModel(question: 'question', answers: [
+        Answer(text: 'option', isCorrect: true),
+        Answer(text: 'option', isCorrect: false),
+        Answer(text: 'option', isCorrect: false),
+        Answer(text: 'option', isCorrect: false)
+      ]),
+      QuizModel(question: 'question', answers: [
+        Answer(text: 'option', isCorrect: true),
+        Answer(text: 'option', isCorrect: false),
+        Answer(text: 'option', isCorrect: false),
+        Answer(text: 'option', isCorrect: false)
+      ]),
+    ];
 
     when(sharedPreferences.getString(any)).thenReturn(jsonString);
-    final result = await localDataSourceImpl.getQuiz();
+    final result = localDataSourceImpl.getQuiz();
 
-    expect(result, equals(tQuiz));
+    expect(result, quizList);
     verify(sharedPreferences.getString(any));
   });
 }

@@ -4,7 +4,7 @@ import 'package:quiz_app/features/data/model/quiz_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class LocalDataSource {
-  Future<QuizModel> getQuiz();
+  List<QuizModel> getQuiz();
 }
 
 class LocalDataSourceImpl implements LocalDataSource {
@@ -13,11 +13,14 @@ class LocalDataSourceImpl implements LocalDataSource {
   LocalDataSourceImpl(this.dataSource);
 
   @override
-  Future<QuizModel> getQuiz() async {
+  List<QuizModel> getQuiz() {
     try {
+      List<QuizModel> quizModelList;
       final String? jsonString = dataSource.getString('quiz');
-
-      return Future.value(QuizModel.fromJson(jsonDecode(jsonString!)));
+      final unconvertedList = jsonDecode(jsonString!) as List;
+      quizModelList =
+          unconvertedList.map((i) => QuizModel.fromJson(i)).toList();
+      return quizModelList;
     } on Exception {
       throw Exception();
     }
