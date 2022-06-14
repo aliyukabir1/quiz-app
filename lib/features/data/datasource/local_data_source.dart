@@ -15,6 +15,10 @@ class LocalDataSourceImpl implements LocalDataSource {
   @override
   List<QuizModel> getQuiz() {
     try {
+      // final String? jsonString1 =
+      //     File('lib/features/data/datasource/quiz_data.json')
+      //         .readAsStringSync();
+      // dataSource.setString('quiz', jsonString1!);
       List<QuizModel> quizModelList;
       final String? jsonString = dataSource.getString('quiz');
       final unconvertedList = jsonDecode(jsonString!) as List;
