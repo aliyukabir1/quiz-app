@@ -27,13 +27,15 @@ void main() {
 
   group('for success', () {
     test('should get list of quizes', () async {
-      when(mockGetQuiz()).thenAnswer((realInvocation) => Right(quizList));
+      when(mockGetQuiz())
+          .thenAnswer((realInvocation) async => Future.value(Right(quizList)));
       bloc.add(GetQuizEvent());
       await untilCalled(mockGetQuiz());
       verify(mockGetQuiz());
     });
     test('should emit [loading,loaded] when gotten succesfully', () {
-      when(mockGetQuiz()).thenAnswer((realInvocation) => Right(quizList));
+      when(mockGetQuiz())
+          .thenAnswer((realInvocation) async => Future.value(Right(quizList)));
 
       bloc.add(GetQuizEvent());
       final expected = [Loading(), Loaded(quizList: quizList)];
@@ -43,7 +45,8 @@ void main() {
 
   group('for error', () {
     test('should emit [loading,Error] when gotten succesfully', () {
-      when(mockGetQuiz()).thenReturn(Left(Failure()));
+      when(mockGetQuiz())
+          .thenAnswer((realInvocation) => Future.value(Left(Failure())));
 
       bloc.add(GetQuizEvent());
       final expected = [

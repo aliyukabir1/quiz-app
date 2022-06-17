@@ -23,7 +23,7 @@ class LocalDataSourceImpl implements LocalDataSource {
           unconvertedList.map((i) => QuizModel.fromJson(i)).toList();
       return Future.value(quizModelList);
     } catch (e) {
-      throw Exception([e]);
+      throw Exception();
     }
   }
 }

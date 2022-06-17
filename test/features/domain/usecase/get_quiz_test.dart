@@ -22,17 +22,20 @@ void main() {
       Quiz(question: 'question', answers: ['ans', 'ans', 'ans']),
       Quiz(question: 'question', answers: ['ans', 'ans', 'ans'])
     ];
-    when(repository.getQuiz()).thenReturn(Right(quizList));
-    final result = usecase.call();
+
+    when(repository.getQuiz())
+        .thenAnswer((realInvocation) async => Future.value(Right(quizList)));
+    final result = await usecase.call();
     expect(result, Right(quizList));
     verify(repository.getQuiz());
   });
 
   test('should return  a failure', () async {
     Failure failure = Failure();
-    when(repository.getQuiz()).thenReturn(Left(failure));
+    when(repository.getQuiz())
+        .thenAnswer((realInvocation) async => Future.value(Left(failure)));
 
-    final result = usecase.call();
+    final result = await usecase.call();
     expect(result, Left(failure));
     verify(repository.getQuiz());
   });
