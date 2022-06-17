@@ -2,16 +2,16 @@
 // in quiz_app/test/helper/mocks/mock.dart.
 // Do not manually edit this file.
 
-import 'dart:async' as _i7;
+import 'dart:async' as _i4;
 
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:quiz_app/core/errors/failure.dart' as _i4;
-import 'package:quiz_app/features/domain/entity/quiz.dart' as _i5;
+import 'package:quiz_app/core/errors/failure.dart' as _i5;
+import 'package:quiz_app/features/domain/entity/quiz.dart' as _i6;
 import 'package:quiz_app/features/domain/repository/quiz_repository.dart'
     as _i3;
 import 'package:quiz_app/features/domain/usecase/get_quiz.dart' as _i8;
-import 'package:shared_preferences/shared_preferences.dart' as _i6;
+import 'package:shared_preferences/shared_preferences.dart' as _i7;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -36,16 +36,17 @@ class MockQuizRepository extends _i1.Mock implements _i3.QuizRepository {
   }
 
   @override
-  _i2.Either<_i4.Failure, List<_i5.Quiz>> getQuiz() =>
+  _i4.Future<_i2.Either<_i5.Failure, List<_i6.Quiz>>> getQuiz() =>
       (super.noSuchMethod(Invocation.method(#getQuiz, []),
-              returnValue: _FakeEither_0<_i4.Failure, List<_i5.Quiz>>())
-          as _i2.Either<_i4.Failure, List<_i5.Quiz>>);
+          returnValue: Future<_i2.Either<_i5.Failure, List<_i6.Quiz>>>.value(
+              _FakeEither_0<_i5.Failure, List<_i6.Quiz>>())) as _i4
+          .Future<_i2.Either<_i5.Failure, List<_i6.Quiz>>>);
 }
 
 /// A class which mocks [SharedPreferences].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockSharedPreferences extends _i1.Mock implements _i6.SharedPreferences {
+class MockSharedPreferences extends _i1.Mock implements _i7.SharedPreferences {
   MockSharedPreferences() {
     _i1.throwOnMissingStub(this);
   }
@@ -77,41 +78,41 @@ class MockSharedPreferences extends _i1.Mock implements _i6.SharedPreferences {
       (super.noSuchMethod(Invocation.method(#getStringList, [key]))
           as List<String>?);
   @override
-  _i7.Future<bool> setBool(String? key, bool? value) =>
+  _i4.Future<bool> setBool(String? key, bool? value) =>
       (super.noSuchMethod(Invocation.method(#setBool, [key, value]),
-          returnValue: Future<bool>.value(false)) as _i7.Future<bool>);
+          returnValue: Future<bool>.value(false)) as _i4.Future<bool>);
   @override
-  _i7.Future<bool> setInt(String? key, int? value) =>
+  _i4.Future<bool> setInt(String? key, int? value) =>
       (super.noSuchMethod(Invocation.method(#setInt, [key, value]),
-          returnValue: Future<bool>.value(false)) as _i7.Future<bool>);
+          returnValue: Future<bool>.value(false)) as _i4.Future<bool>);
   @override
-  _i7.Future<bool> setDouble(String? key, double? value) =>
+  _i4.Future<bool> setDouble(String? key, double? value) =>
       (super.noSuchMethod(Invocation.method(#setDouble, [key, value]),
-          returnValue: Future<bool>.value(false)) as _i7.Future<bool>);
+          returnValue: Future<bool>.value(false)) as _i4.Future<bool>);
   @override
-  _i7.Future<bool> setString(String? key, String? value) =>
+  _i4.Future<bool> setString(String? key, String? value) =>
       (super.noSuchMethod(Invocation.method(#setString, [key, value]),
-          returnValue: Future<bool>.value(false)) as _i7.Future<bool>);
+          returnValue: Future<bool>.value(false)) as _i4.Future<bool>);
   @override
-  _i7.Future<bool> setStringList(String? key, List<String>? value) =>
+  _i4.Future<bool> setStringList(String? key, List<String>? value) =>
       (super.noSuchMethod(Invocation.method(#setStringList, [key, value]),
-          returnValue: Future<bool>.value(false)) as _i7.Future<bool>);
+          returnValue: Future<bool>.value(false)) as _i4.Future<bool>);
   @override
-  _i7.Future<bool> remove(String? key) =>
+  _i4.Future<bool> remove(String? key) =>
       (super.noSuchMethod(Invocation.method(#remove, [key]),
-          returnValue: Future<bool>.value(false)) as _i7.Future<bool>);
+          returnValue: Future<bool>.value(false)) as _i4.Future<bool>);
   @override
-  _i7.Future<bool> commit() =>
+  _i4.Future<bool> commit() =>
       (super.noSuchMethod(Invocation.method(#commit, []),
-          returnValue: Future<bool>.value(false)) as _i7.Future<bool>);
+          returnValue: Future<bool>.value(false)) as _i4.Future<bool>);
   @override
-  _i7.Future<bool> clear() => (super.noSuchMethod(Invocation.method(#clear, []),
-      returnValue: Future<bool>.value(false)) as _i7.Future<bool>);
+  _i4.Future<bool> clear() => (super.noSuchMethod(Invocation.method(#clear, []),
+      returnValue: Future<bool>.value(false)) as _i4.Future<bool>);
   @override
-  _i7.Future<void> reload() =>
+  _i4.Future<void> reload() =>
       (super.noSuchMethod(Invocation.method(#reload, []),
           returnValue: Future<void>.value(),
-          returnValueForMissingStub: Future<void>.value()) as _i7.Future<void>);
+          returnValueForMissingStub: Future<void>.value()) as _i4.Future<void>);
 }
 
 /// A class which mocks [GetQuiz].
@@ -127,8 +128,9 @@ class MockGetQuiz extends _i1.Mock implements _i8.GetQuiz {
       (super.noSuchMethod(Invocation.getter(#repository),
           returnValue: _FakeQuizRepository_1()) as _i3.QuizRepository);
   @override
-  _i2.Either<_i4.Failure, List<_i5.Quiz>> call() =>
+  _i4.Future<_i2.Either<_i5.Failure, List<_i6.Quiz>>> call() =>
       (super.noSuchMethod(Invocation.method(#call, []),
-              returnValue: _FakeEither_0<_i4.Failure, List<_i5.Quiz>>())
-          as _i2.Either<_i4.Failure, List<_i5.Quiz>>);
+          returnValue: Future<_i2.Either<_i5.Failure, List<_i6.Quiz>>>.value(
+              _FakeEither_0<_i5.Failure, List<_i6.Quiz>>())) as _i4
+          .Future<_i2.Either<_i5.Failure, List<_i6.Quiz>>>);
 }

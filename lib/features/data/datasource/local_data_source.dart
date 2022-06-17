@@ -1,32 +1,29 @@
 import 'dart:convert';
-
+import 'package:flutter/services.dart';
 import 'package:quiz_app/features/data/model/quiz_model.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class LocalDataSource {
-  List<QuizModel> getQuiz();
+  Future<List<QuizModel>> getQuiz();
 }
 
 class LocalDataSourceImpl implements LocalDataSource {
-  final SharedPreferences dataSource;
-
-  LocalDataSourceImpl(this.dataSource);
+  Future<String> getList() async {
+    final list = await rootBundle.loadString('assets/quiz_data.json');
+    return list;
+  }
 
   @override
-  List<QuizModel> getQuiz() {
+  Future<List<QuizModel>> getQuiz() async {
     try {
-      // final String? jsonString1 =
-      //     File('lib/features/data/datasource/quiz_data.json')
-      //         .readAsStringSync();
-      // dataSource.setString('quiz', jsonString1!);
+      final jsonString = await getList();
+
       List<QuizModel> quizModelList;
-      final String? jsonString = dataSource.getString('quiz');
-      final unconvertedList = jsonDecode(jsonString!) as List;
+      final unconvertedList = jsonDecode(jsonString) as List;
       quizModelList =
           unconvertedList.map((i) => QuizModel.fromJson(i)).toList();
-      return quizModelList;
-    } on Exception {
-      throw Exception();
+      return Future.value(quizModelList);
+    } catch (e) {
+      throw Exception([e]);
     }
   }
 }

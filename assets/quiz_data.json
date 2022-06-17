@@ -1,26 +1,26 @@
 [{
-    "question":"question",
+    "question":"who is the president of nigeria ?",
     "answers":[
         {
-            "text": "option",
+            "text": "tinubu",
             "isCorrect": true
         },
         {
-            "text": "option",
+            "text": "buhari",
             "isCorrect": false
         },
         {
-            "text": "option",
+            "text": "ganduje",
             "isCorrect": false
         },
         {
-            "text": "option",
+            "text": "abiola",
             "isCorrect": false
         }
     ]
 },
 {
-    "question":"question",
+    "question":"question 2",
     "answers":[
         {
             "text": "option",

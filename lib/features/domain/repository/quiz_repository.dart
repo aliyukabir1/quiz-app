@@ -3,5 +3,5 @@ import 'package:quiz_app/core/errors/failure.dart';
 import 'package:quiz_app/features/domain/entity/quiz.dart';
 
 abstract class QuizRepository {
-  Either<Failure, List<Quiz>> getQuiz();
+  Future<Either<Failure, List<Quiz>>> getQuiz();
 }

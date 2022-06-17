@@ -9,11 +9,7 @@ class GetQuiz implements UseCase<List<Quiz>> {
 
   GetQuiz(this.repository);
   @override
-  Either<Failure, List<Quiz>> call() {
-    try {
-      return repository.getQuiz();
-    } on Exception {
-      throw Failure();
-    }
+  Future<Either<Failure, List<Quiz>>> call() {
+    return repository.getQuiz();
   }
 }

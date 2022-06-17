@@ -10,10 +10,10 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
   final GetQuiz getQuiz;
   int indexOfQuiz = 0;
   QuizBloc({required this.getQuiz}) : super(Initial()) {
-    on<QuizEvent>((event, emit) {
+    on<QuizEvent>((event, emit) async {
       if (event is GetQuizEvent) {
         emit(Loading());
-        final failurOrList = getQuiz.call();
+        final failurOrList = await getQuiz.call();
         failurOrList.fold(
             (failure) => emit(const Error(message: 'can not find any quiz')),
             (listOfQuiz) => emit(Loaded(quizList: listOfQuiz)));

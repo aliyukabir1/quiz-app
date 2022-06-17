@@ -17,21 +17,41 @@ class _OptionsState extends State<Options> {
     return Column(
       children: [
         RadioListTile(
-            value: val,
+            title: Text(widget.answer[0].text),
+            value: 1,
             groupValue: groupVal,
             onChanged: (value) {
               setState(() {
-                groupVal = val;
+                groupVal = 1;
               });
             }),
         RadioListTile(
-            value: val + 1,
+            title: Text(widget.answer[1].text),
+            value: 2,
             groupValue: groupVal,
             onChanged: (value) {
               setState(() {
-                groupVal = val;
+                groupVal = 2;
               });
-            })
+            }),
+        RadioListTile(
+            title: Text(widget.answer[2].text),
+            value: 3,
+            groupValue: groupVal,
+            onChanged: (value) {
+              setState(() {
+                groupVal = 3;
+              });
+            }),
+        RadioListTile(
+            title: Text(widget.answer[3].text),
+            value: 4,
+            groupValue: groupVal,
+            onChanged: (value) {
+              setState(() {
+                groupVal = 4;
+              });
+            }),
       ],
     );
   }
