@@ -29,10 +29,8 @@ class QuizPage extends StatelessWidget {
               } else if (state is Loading) {
                 return const Center(child: CircularProgressIndicator());
               } else if (state is Loaded) {
-                int index = BlocProvider.of<QuizBloc>(context).indexOfQuiz;
-
                 return QuizBody(
-                  quiz: state.quizList[index],
+                  quiz: state.quiz,
                 );
               }
               return Container();

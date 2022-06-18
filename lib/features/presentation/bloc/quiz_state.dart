@@ -12,9 +12,9 @@ class Loading extends QuizState {}
 class Initial extends QuizState {}
 
 class Loaded extends QuizState {
-  final List<Quiz> quizList;
+  final Quiz quiz;
 
-  const Loaded({required this.quizList});
+  const Loaded({required this.quiz});
 }
 
 class Error extends QuizState {

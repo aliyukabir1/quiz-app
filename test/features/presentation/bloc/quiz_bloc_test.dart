@@ -38,7 +38,7 @@ void main() {
           .thenAnswer((realInvocation) async => Future.value(Right(quizList)));
 
       bloc.add(GetQuizEvent());
-      final expected = [Loading(), Loaded(quizList: quizList)];
+      final expected = [Loading(), Loaded(quiz: quizList[0])];
       expect(bloc.stream, emitsInOrder(expected));
     });
   });

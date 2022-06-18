@@ -9,6 +9,7 @@ part 'quiz_state.dart';
 class QuizBloc extends Bloc<QuizEvent, QuizState> {
   final GetQuiz getQuiz;
   int indexOfQuiz = 0;
+  List<Quiz> listOfQuizes = [];
   QuizBloc({required this.getQuiz}) : super(Initial()) {
     on<QuizEvent>((event, emit) async {
       if (event is GetQuizEvent) {
@@ -16,11 +17,22 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
         final failurOrList = await getQuiz.call();
         failurOrList.fold(
             (failure) => emit(const Error(message: 'can not find any quiz')),
-            (listOfQuiz) => emit(Loaded(quizList: listOfQuiz)));
+            (listOfQuiz) {
+          listOfQuizes = listOfQuiz;
+          emit(Loaded(quiz: listOfQuiz[indexOfQuiz]));
+        });
       } else if (event is Next) {
-        indexOfQuiz += 1;
+        if (indexOfQuiz < listOfQuizes.length) {
+          emit(Loading());
+          indexOfQuiz += 1;
+          emit(Loaded(quiz: listOfQuizes[indexOfQuiz]));
+        }
       } else if (event is Previous) {
-        indexOfQuiz > 0 ? indexOfQuiz -= 1 : indexOfQuiz;
+        if (indexOfQuiz > 0) {
+          emit(Loading());
+          indexOfQuiz -= 1;
+          emit(Loaded(quiz: listOfQuizes[indexOfQuiz]));
+        }
       }
     });
   }
