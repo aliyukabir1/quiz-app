@@ -10,10 +10,13 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
   final GetQuiz getQuiz;
   int indexOfQuiz = 0;
   List<Quiz> listOfQuizes = [];
+  List answersCheck = [];
+  late int selectedOption;
   QuizBloc({required this.getQuiz}) : super(Initial()) {
     on<QuizEvent>((event, emit) async {
       if (event is GetQuizEvent) {
-        _getQuestions(emit);
+        await _getQuestions(emit);
+        selectedOption = answersCheck[indexOfQuiz];
       } else if (event is Next) {
         _nextQuestion(emit);
       } else if (event is Previous) {
@@ -23,13 +26,15 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
   }
 
   //methods for getting questions, next and previous questions...s
-  void _getQuestions(Emitter<QuizState> emit) async {
+  Future<void> _getQuestions(Emitter<QuizState> emit) async {
     emit(Loading());
     final failurOrList = await getQuiz.call();
     failurOrList
         .fold((failure) => emit(const Error(message: 'can not find any quiz')),
             (listOfQuiz) {
       listOfQuizes = listOfQuiz;
+      answersCheck = List.filled(listOfQuiz.length, -1);
+      print(answersCheck);
       emit(Loaded(quiz: listOfQuiz[indexOfQuiz]));
     });
   }
@@ -38,6 +43,7 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
     if (indexOfQuiz > 0) {
       emit(Loading());
       indexOfQuiz -= 1;
+      selectedOption = answersCheck[indexOfQuiz];
       emit(Loaded(quiz: listOfQuizes[indexOfQuiz]));
     }
   }
@@ -46,7 +52,15 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
     if (indexOfQuiz < listOfQuizes.length) {
       emit(Loading());
       indexOfQuiz += 1;
+      selectedOption = answersCheck[indexOfQuiz];
       emit(Loaded(quiz: listOfQuizes[indexOfQuiz]));
     }
+  }
+
+// set the option value
+  void onSelect(int groupValue) {
+    answersCheck[indexOfQuiz] = groupValue;
+    selectedOption = answersCheck[indexOfQuiz];
+    print(answersCheck);
   }
 }

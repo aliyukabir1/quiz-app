@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quiz_app/features/data/model/quiz_model.dart';
+import 'package:quiz_app/features/presentation/bloc/quiz_bloc.dart';
 
 class Options extends StatefulWidget {
   final List<Answer> answer;
@@ -10,10 +12,11 @@ class Options extends StatefulWidget {
 }
 
 class _OptionsState extends State<Options> {
-  int val = 0;
-  int groupVal = -1;
   @override
   Widget build(BuildContext context) {
+    final bloc = BlocProvider.of<QuizBloc>(context);
+    int groupVal = context.watch<QuizBloc>().selectedOption;
+    print(groupVal);
     return Column(
       children: [
         RadioListTile(
@@ -24,6 +27,7 @@ class _OptionsState extends State<Options> {
               setState(() {
                 groupVal = 1;
               });
+              bloc.onSelect(groupVal);
             }),
         RadioListTile(
             title: Text(widget.answer[1].text),
@@ -33,6 +37,7 @@ class _OptionsState extends State<Options> {
               setState(() {
                 groupVal = 2;
               });
+              bloc.onSelect(groupVal);
             }),
         RadioListTile(
             title: Text(widget.answer[2].text),
@@ -42,6 +47,7 @@ class _OptionsState extends State<Options> {
               setState(() {
                 groupVal = 3;
               });
+              bloc.onSelect(groupVal);
             }),
         RadioListTile(
             title: Text(widget.answer[3].text),
@@ -51,6 +57,7 @@ class _OptionsState extends State<Options> {
               setState(() {
                 groupVal = 4;
               });
+              bloc.onSelect(groupVal);
             }),
       ],
     );
