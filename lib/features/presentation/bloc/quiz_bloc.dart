@@ -11,7 +11,12 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
   int indexOfQuiz = 0;
   List<Quiz> listOfQuizes = [];
   List answersCheck = [];
+  List expectedAnswers = [];
+  bool displaySubmitButton = false;
   late int selectedOption;
+  int score = 0;
+
+  //business logics
   QuizBloc({required this.getQuiz}) : super(Initial()) {
     on<QuizEvent>((event, emit) async {
       if (event is GetQuizEvent) {
@@ -21,6 +26,10 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
         _nextQuestion(emit);
       } else if (event is Previous) {
         _previousQuestion(emit);
+      } else if (event is Submit) {
+        markQuiz(emit);
+      } else if (state is Restart) {
+        restart(emit);
       }
     });
   }
@@ -34,7 +43,6 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
             (listOfQuiz) {
       listOfQuizes = listOfQuiz;
       answersCheck = List.filled(listOfQuiz.length, -1);
-      print(answersCheck);
       emit(Loaded(quiz: listOfQuiz[indexOfQuiz]));
     });
   }
@@ -44,6 +52,7 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
       emit(Loading());
       indexOfQuiz -= 1;
       selectedOption = answersCheck[indexOfQuiz];
+      shouldShowSubmit();
       emit(Loaded(quiz: listOfQuizes[indexOfQuiz]));
     }
   }
@@ -53,6 +62,7 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
       emit(Loading());
       indexOfQuiz += 1;
       selectedOption = answersCheck[indexOfQuiz];
+      shouldShowSubmit();
       emit(Loaded(quiz: listOfQuizes[indexOfQuiz]));
     }
   }
@@ -61,6 +71,36 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
   void onSelect(int groupValue) {
     answersCheck[indexOfQuiz] = groupValue;
     selectedOption = answersCheck[indexOfQuiz];
-    print(answersCheck);
+  }
+
+  void shouldShowSubmit() {
+    displaySubmitButton = indexOfQuiz == listOfQuizes.length - 1 ? true : false;
+  }
+
+  markQuiz(Emitter<QuizState> emit) {
+    emit(Loading());
+    for (var item in listOfQuizes) {
+      var value =
+          item.answers.indexWhere((element) => element.isCorrect == true);
+      expectedAnswers.add(value);
+    }
+    for (var i = 0; i < listOfQuizes.length; i++) {
+      if (expectedAnswers[i] == answersCheck[i]) {
+        score += 1;
+      } else {
+        score = score;
+      }
+    }
+    emit(Result(score: score, total: listOfQuizes.length));
+  }
+
+  restart(Emitter<QuizState> emit) {
+    emit(Loading());
+    indexOfQuiz = 0;
+    score = 0;
+    answersCheck = [];
+    expectedAnswers = [];
+
+    emit(Initial());
   }
 }

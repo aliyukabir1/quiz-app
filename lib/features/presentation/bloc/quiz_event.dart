@@ -14,3 +14,5 @@ class Next extends QuizEvent {}
 class Previous extends QuizEvent {}
 
 class Submit extends QuizEvent {}
+
+class Restart extends QuizEvent {}

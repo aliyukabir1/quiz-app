@@ -16,11 +16,20 @@ class _OptionsState extends State<Options> {
   Widget build(BuildContext context) {
     final bloc = BlocProvider.of<QuizBloc>(context);
     int groupVal = context.watch<QuizBloc>().selectedOption;
-    print(groupVal);
     return Column(
       children: [
         RadioListTile(
             title: Text(widget.answer[0].text),
+            value: 0,
+            groupValue: groupVal,
+            onChanged: (value) {
+              setState(() {
+                groupVal = 0;
+              });
+              bloc.onSelect(groupVal);
+            }),
+        RadioListTile(
+            title: Text(widget.answer[1].text),
             value: 1,
             groupValue: groupVal,
             onChanged: (value) {
@@ -30,7 +39,7 @@ class _OptionsState extends State<Options> {
               bloc.onSelect(groupVal);
             }),
         RadioListTile(
-            title: Text(widget.answer[1].text),
+            title: Text(widget.answer[2].text),
             value: 2,
             groupValue: groupVal,
             onChanged: (value) {
@@ -40,22 +49,12 @@ class _OptionsState extends State<Options> {
               bloc.onSelect(groupVal);
             }),
         RadioListTile(
-            title: Text(widget.answer[2].text),
+            title: Text(widget.answer[3].text),
             value: 3,
             groupValue: groupVal,
             onChanged: (value) {
               setState(() {
                 groupVal = 3;
-              });
-              bloc.onSelect(groupVal);
-            }),
-        RadioListTile(
-            title: Text(widget.answer[3].text),
-            value: 4,
-            groupValue: groupVal,
-            onChanged: (value) {
-              setState(() {
-                groupVal = 4;
               });
               bloc.onSelect(groupVal);
             }),

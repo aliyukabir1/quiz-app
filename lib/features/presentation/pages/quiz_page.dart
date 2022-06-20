@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quiz_app/features/presentation/bloc/quiz_bloc.dart';
 import 'package:quiz_app/features/presentation/widgets/quiz_body.dart';
+import 'package:quiz_app/features/presentation/widgets/result.dart';
 import 'package:quiz_app/locator.dart';
 
 class QuizPage extends StatelessWidget {
@@ -31,6 +32,11 @@ class QuizPage extends StatelessWidget {
               } else if (state is Loaded) {
                 return QuizBody(
                   quiz: state.quiz,
+                );
+              } else if (state is Result) {
+                return ResultPage(
+                  score: state.score,
+                  total: state.total,
                 );
               }
               return Container();

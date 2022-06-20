@@ -22,3 +22,9 @@ class Error extends QuizState {
 
   const Error({required this.message});
 }
+
+class Result extends QuizState {
+  final int score;
+  final int total;
+  const Result({required this.score, required this.total});
+}

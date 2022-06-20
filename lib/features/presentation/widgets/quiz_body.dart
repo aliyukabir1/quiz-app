@@ -42,16 +42,27 @@ class _QuizBodyState extends State<QuizBody> {
               style: TextStyle(color: Colors.white),
             ),
           ),
-          MaterialButton(
-            color: Colors.blueAccent,
-            onPressed: () {
-              BlocProvider.of<QuizBloc>(context).add(Next());
-            },
-            child: const Text(
-              'Next',
-              style: TextStyle(color: Colors.white),
-            ),
-          )
+          context.read<QuizBloc>().displaySubmitButton
+              ? MaterialButton(
+                  color: Colors.blueAccent,
+                  onPressed: () {
+                    BlocProvider.of<QuizBloc>(context).add(Submit());
+                  },
+                  child: const Text(
+                    'Submit',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                )
+              : MaterialButton(
+                  color: Colors.blueAccent,
+                  onPressed: () {
+                    BlocProvider.of<QuizBloc>(context).add(Next());
+                  },
+                  child: const Text(
+                    'Next',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                )
         ],
       )
     ]);
