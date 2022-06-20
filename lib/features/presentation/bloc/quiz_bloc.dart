@@ -58,7 +58,7 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
   }
 
   void _nextQuestion(Emitter<QuizState> emit) {
-    if (indexOfQuiz < listOfQuizes.length) {
+    if (indexOfQuiz < listOfQuizes.length && answersCheck[indexOfQuiz] != -1) {
       emit(Loading());
       indexOfQuiz += 1;
       selectedOption = answersCheck[indexOfQuiz];
@@ -78,20 +78,22 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
   }
 
   markQuiz(Emitter<QuizState> emit) {
-    emit(Loading());
-    for (var item in listOfQuizes) {
-      var value =
-          item.answers.indexWhere((element) => element.isCorrect == true);
-      expectedAnswers.add(value);
-    }
-    for (var i = 0; i < listOfQuizes.length; i++) {
-      if (expectedAnswers[i] == answersCheck[i]) {
-        score += 1;
-      } else {
-        score = score;
+    if (answersCheck[indexOfQuiz] != -1) {
+      emit(Loading());
+      for (var item in listOfQuizes) {
+        var value =
+            item.answers.indexWhere((element) => element.isCorrect == true);
+        expectedAnswers.add(value);
       }
+      for (var i = 0; i < listOfQuizes.length; i++) {
+        if (expectedAnswers[i] == answersCheck[i]) {
+          score += 1;
+        } else {
+          score = score;
+        }
+      }
+      emit(Result(score: score, total: listOfQuizes.length));
     }
-    emit(Result(score: score, total: listOfQuizes.length));
   }
 
   restart(Emitter<QuizState> emit) {

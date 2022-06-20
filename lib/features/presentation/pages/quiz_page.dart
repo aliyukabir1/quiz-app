@@ -11,7 +11,11 @@ class QuizPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Quiz'), centerTitle: true),
+      appBar: AppBar(
+        title: const Text('Quiz'),
+        centerTitle: true,
+        elevation: 2,
+      ),
       body: BlocProvider(
         create: (context) => sl<QuizBloc>(),
         child: Padding(
@@ -21,10 +25,18 @@ class QuizPage extends StatelessWidget {
               if (state is Initial) {
                 return Center(
                   child: MaterialButton(
+                    color: Colors.white,
+                    elevation: 0,
                     onPressed: () {
                       BlocProvider.of<QuizBloc>(context).add(GetQuizEvent());
                     },
-                    child: const Text('Start Quiz'),
+                    child: const Text(
+                      'Start Quiz',
+                      style: TextStyle(
+                          color: Colors.green,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold),
+                    ),
                   ),
                 );
               } else if (state is Loading) {

@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:quiz_app/core/errors/failure.dart';
 import 'package:quiz_app/features/domain/entity/quiz.dart';
 import 'package:quiz_app/features/presentation/bloc/quiz_bloc.dart';
 

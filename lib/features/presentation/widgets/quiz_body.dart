@@ -24,8 +24,7 @@ class _QuizBodyState extends State<QuizBody> {
     return Column(mainAxisAlignment: MainAxisAlignment.center, children: [
       Text(
         quiz.question,
-        style: const TextStyle(
-            fontSize: 20, color: Color.fromARGB(255, 28, 63, 29)),
+        style: const TextStyle(fontSize: 20, color: Colors.green),
       ),
       const SizedBox(height: 30),
       Options(answer: answers),
@@ -33,7 +32,7 @@ class _QuizBodyState extends State<QuizBody> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           MaterialButton(
-            color: Colors.blueAccent,
+            color: Colors.green,
             onPressed: () {
               BlocProvider.of<QuizBloc>(context).add(Previous());
             },
@@ -44,7 +43,7 @@ class _QuizBodyState extends State<QuizBody> {
           ),
           context.read<QuizBloc>().displaySubmitButton
               ? MaterialButton(
-                  color: Colors.blueAccent,
+                  color: Colors.green,
                   onPressed: () {
                     BlocProvider.of<QuizBloc>(context).add(Submit());
                   },
@@ -54,7 +53,7 @@ class _QuizBodyState extends State<QuizBody> {
                   ),
                 )
               : MaterialButton(
-                  color: Colors.blueAccent,
+                  color: Colors.green,
                   onPressed: () {
                     BlocProvider.of<QuizBloc>(context).add(Next());
                   },
