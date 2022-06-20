@@ -41,19 +41,31 @@ void main() {
       final expected = [Loading(), Loaded(quiz: quizList[0])];
       expect(bloc.stream, emitsInOrder(expected));
     });
-  });
 
-  group('for error', () {
-    test('should emit [loading,Error] when gotten succesfully', () {
-      when(mockGetQuiz())
-          .thenAnswer((realInvocation) => Future.value(Left(Failure())));
+    test('should emit [loading,Result] when submitted', () {
+      bloc.add(Submit());
+      final expected = [Loading(), const Result(score: 2, total: 2)];
+      expect(bloc.stream, emitsInOrder(expected));
+    });
 
-      bloc.add(GetQuizEvent());
-      final expected = [
-        Loading(),
-        const Error(message: 'can not find any quiz')
-      ];
+    test('should emit [loading,Initial] when Restarted', () {
+      bloc.add(Restart());
+      final expected = [Loading(), Initial()];
       expect(bloc.stream, emitsInOrder(expected));
     });
   });
+
+  // group('for error', () {
+  //   test('should emit [loading,Error] when gotten succesfully', () {
+  //     when(mockGetQuiz())
+  //         .thenAnswer((realInvocation) => Future.value(Left(Failure())));
+
+  //     bloc.add(GetQuizEvent());
+  //     final expected = [
+  //       Loading(),
+  //       const Error(message: 'can not find any quiz')
+  //     ];
+  //     expect(bloc.stream, emitsInOrder(expected));
+  //   });
+  // });
 }
