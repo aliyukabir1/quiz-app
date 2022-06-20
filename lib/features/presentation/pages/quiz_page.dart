@@ -42,7 +42,14 @@ class QuizPage extends StatelessWidget {
                   },
                 );
               }
-              return Container();
+              return const Center(
+                  child: Text(
+                'oops something went terribly wrong',
+                style: TextStyle(
+                    color: Colors.red,
+                    fontSize: 18,
+                    fontStyle: FontStyle.italic),
+              ));
             },
           ),
         ),
