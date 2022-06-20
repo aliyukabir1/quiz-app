@@ -28,7 +28,7 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
         _previousQuestion(emit);
       } else if (event is Submit) {
         markQuiz(emit);
-      } else if (state is Restart) {
+      } else if (event is Restart) {
         restart(emit);
       }
     });
@@ -98,9 +98,9 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
     emit(Loading());
     indexOfQuiz = 0;
     score = 0;
+    displaySubmitButton = false;
     answersCheck = [];
     expectedAnswers = [];
-
     emit(Initial());
   }
 }

@@ -37,6 +37,9 @@ class QuizPage extends StatelessWidget {
                 return ResultPage(
                   score: state.score,
                   total: state.total,
+                  onpressed: () {
+                    BlocProvider.of<QuizBloc>(context).add(Restart());
+                  },
                 );
               }
               return Container();
