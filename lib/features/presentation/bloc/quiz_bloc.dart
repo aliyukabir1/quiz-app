@@ -34,7 +34,7 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
     });
   }
 
-  //methods for getting questions, next and previous questions...s
+  //methods for getting questions, next and previous
   Future<void> _getQuestions(Emitter<QuizState> emit) async {
     emit(Loading());
     final failurOrList = await getQuiz.call();
