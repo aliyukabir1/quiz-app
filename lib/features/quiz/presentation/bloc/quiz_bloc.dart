@@ -20,7 +20,7 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
   QuizBloc({required this.getQuiz}) : super(Initial()) {
     on<QuizEvent>((event, emit) async {
       if (event is GetQuizEvent) {
-        await _getQuestions(emit);
+        await _getQuestions(emit, event.topic);
         selectedOption = answersCheck[indexOfQuiz];
       } else if (event is Next) {
         _nextQuestion(emit);
@@ -35,9 +35,9 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
   }
 
   //methods for getting questions, next and previous
-  Future<void> _getQuestions(Emitter<QuizState> emit) async {
+  Future<void> _getQuestions(Emitter<QuizState> emit, String topic) async {
     emit(Loading());
-    final failurOrList = await getQuiz.call();
+    final failurOrList = await getQuiz.call(topic);
     failurOrList
         .fold((failure) => emit(const Error(message: 'can not find any quiz')),
             (listOfQuiz) {

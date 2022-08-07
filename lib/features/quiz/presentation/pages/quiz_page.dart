@@ -6,13 +6,14 @@ import 'package:quiz_app/features/quiz/presentation/widgets/result.dart';
 import 'package:quiz_app/locator.dart';
 
 class QuizPage extends StatelessWidget {
-  const QuizPage({Key? key}) : super(key: key);
+  final String topic;
+  const QuizPage({Key? key, required this.topic}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Quiz'),
+        title: Text('$topic Quiz'),
         centerTitle: true,
         elevation: 2,
       ),
@@ -28,7 +29,8 @@ class QuizPage extends StatelessWidget {
                     color: Colors.white,
                     elevation: 0,
                     onPressed: () {
-                      BlocProvider.of<QuizBloc>(context).add(GetQuizEvent());
+                      BlocProvider.of<QuizBloc>(context)
+                          .add(GetQuizEvent(topic));
                     },
                     child: const Text(
                       'Start Quiz',

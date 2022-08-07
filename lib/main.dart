@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quiz_app/features/quiz/presentation/pages/quiz_page.dart';
+import 'package:quiz_app/features/splash/splash_screen.dart';
 import 'package:quiz_app/locator.dart' as si;
 
 void main() async {
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blueGrey,
       ),
-      home: const QuizPage(),
+      home: const SplashScreen(),
     );
   }
 }

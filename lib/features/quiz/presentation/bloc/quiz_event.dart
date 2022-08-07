@@ -7,7 +7,11 @@ abstract class QuizEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class GetQuizEvent extends QuizEvent {}
+class GetQuizEvent extends QuizEvent {
+  final String topic;
+
+  const GetQuizEvent(this.topic);
+}
 
 class Next extends QuizEvent {}
 

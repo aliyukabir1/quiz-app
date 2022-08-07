@@ -9,9 +9,9 @@ class QuizRepositoryImplementation implements QuizRepository {
 
   QuizRepositoryImplementation(this.dataSource);
   @override
-  Future<Either<Failure, List<QuizModel>>> getQuiz() async {
+  Future<Either<Failure, List<QuizModel>>> getQuiz(String topic) async {
     try {
-      return Future.value(Right(await dataSource.getQuiz()));
+      return Future.value(Right(await dataSource.getQuiz(topic)));
     } on Exception {
       return Left(Failure());
     }

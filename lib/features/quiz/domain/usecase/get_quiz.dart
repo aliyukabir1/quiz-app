@@ -8,9 +8,11 @@ import 'package:quiz_app/features/quiz/domain/repository/quiz_repository.dart';
 class GetQuiz implements UseCase<List<Quiz>> {
   final QuizRepository repository;
 
-  GetQuiz(this.repository);
+  GetQuiz(
+    this.repository,
+  );
   @override
-  Future<Either<Failure, List<Quiz>>> call() {
-    return repository.getQuiz();
+  Future<Either<Failure, List<Quiz>>> call(String topic) {
+    return repository.getQuiz(topic);
   }
 }
