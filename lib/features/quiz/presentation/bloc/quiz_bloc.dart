@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:quiz_app/features/domain/entity/quiz.dart';
-import 'package:quiz_app/features/domain/usecase/get_quiz.dart';
+import 'package:quiz_app/features/quiz/domain/entity/quiz.dart';
+import 'package:quiz_app/features/quiz/domain/usecase/get_quiz.dart';
 
 part 'quiz_event.dart';
 part 'quiz_state.dart';

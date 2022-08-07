@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/services.dart';
-import 'package:quiz_app/features/data/model/quiz_model.dart';
+import 'package:quiz_app/features/quiz/data/model/quiz_model.dart';
 
 abstract class LocalDataSource {
   Future<List<QuizModel>> getQuiz();

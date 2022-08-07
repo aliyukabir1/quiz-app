@@ -2,8 +2,8 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:quiz_app/core/errors/failure.dart';
-import 'package:quiz_app/features/domain/entity/quiz.dart';
-import 'package:quiz_app/features/domain/usecase/get_quiz.dart';
+import 'package:quiz_app/features/quiz/domain/entity/quiz.dart';
+import 'package:quiz_app/features/quiz/domain/usecase/get_quiz.dart';
 
 import '../../../helper/mocks/mock.mocks.dart';
 

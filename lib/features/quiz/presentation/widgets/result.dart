@@ -25,7 +25,7 @@ class ResultPage extends StatelessWidget {
         const SizedBox(height: 20),
         Text(
           'You Scored $score out of $total',
-          style: const TextStyle(color: Colors.blueAccent, fontSize: 20),
+          style: const TextStyle(color: Colors.blueGrey, fontSize: 20),
         ),
         const SizedBox(height: 40),
         TextButton(

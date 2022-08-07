@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/features/quiz/presentation/pages/quiz_page.dart';
 import 'package:quiz_app/locator.dart' as si;
-
-import 'features/presentation/pages/quiz_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,7 +17,7 @@ class MyApp extends StatelessWidget {
       title: 'Quiz App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.green,
+        primarySwatch: Colors.blueGrey,
       ),
       home: const QuizPage(),
     );

@@ -7,10 +7,10 @@ import 'dart:async' as _i4;
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:quiz_app/core/errors/failure.dart' as _i5;
-import 'package:quiz_app/features/domain/entity/quiz.dart' as _i6;
-import 'package:quiz_app/features/domain/repository/quiz_repository.dart'
+import 'package:quiz_app/features/quiz/domain/entity/quiz.dart' as _i6;
+import 'package:quiz_app/features/quiz/domain/repository/quiz_repository.dart'
     as _i3;
-import 'package:quiz_app/features/domain/usecase/get_quiz.dart' as _i8;
+import 'package:quiz_app/features/quiz/domain/usecase/get_quiz.dart' as _i8;
 import 'package:shared_preferences/shared_preferences.dart' as _i7;
 
 // ignore_for_file: type=lint

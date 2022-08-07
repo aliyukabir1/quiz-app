@@ -1,9 +1,9 @@
 import 'package:get_it/get_it.dart';
-import 'package:quiz_app/features/data/datasource/local_data_source.dart';
-import 'package:quiz_app/features/data/repository/quix_repository_impl.dart';
-import 'package:quiz_app/features/domain/repository/quiz_repository.dart';
-import 'package:quiz_app/features/domain/usecase/get_quiz.dart';
-import 'package:quiz_app/features/presentation/bloc/quiz_bloc.dart';
+import 'package:quiz_app/features/quiz/data/datasource/local_data_source.dart';
+import 'package:quiz_app/features/quiz/data/repository/quix_repository_impl.dart';
+import 'package:quiz_app/features/quiz/domain/repository/quiz_repository.dart';
+import 'package:quiz_app/features/quiz/domain/usecase/get_quiz.dart';
+import 'package:quiz_app/features/quiz/presentation/bloc/quiz_bloc.dart';
 
 final sl = GetIt.instance;
 

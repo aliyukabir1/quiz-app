@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:quiz_app/features/presentation/bloc/quiz_bloc.dart';
-import 'package:quiz_app/features/presentation/widgets/quiz_body.dart';
-import 'package:quiz_app/features/presentation/widgets/result.dart';
+import 'package:quiz_app/features/quiz/presentation/bloc/quiz_bloc.dart';
+import 'package:quiz_app/features/quiz/presentation/widgets/quiz_body.dart';
+import 'package:quiz_app/features/quiz/presentation/widgets/result.dart';
 import 'package:quiz_app/locator.dart';
 
 class QuizPage extends StatelessWidget {
@@ -33,7 +33,7 @@ class QuizPage extends StatelessWidget {
                     child: const Text(
                       'Start Quiz',
                       style: TextStyle(
-                          color: Colors.green,
+                          color: Colors.blueGrey,
                           fontSize: 18,
                           fontWeight: FontWeight.bold),
                     ),

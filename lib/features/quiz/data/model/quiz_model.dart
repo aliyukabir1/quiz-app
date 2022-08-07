@@ -1,4 +1,4 @@
-import 'package:quiz_app/features/domain/entity/quiz.dart';
+import 'package:quiz_app/features/quiz/domain/entity/quiz.dart';
 
 class QuizModel extends Quiz {
   const QuizModel({required String question, required List<Answer> answers})

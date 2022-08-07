@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:quiz_app/features/data/model/quiz_model.dart';
-import 'package:quiz_app/features/domain/entity/quiz.dart';
+import 'package:quiz_app/features/quiz/data/model/quiz_model.dart';
+import 'package:quiz_app/features/quiz/domain/entity/quiz.dart';
 
 import '../../../helper/fixtures/fixture_reader.dart';
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:quiz_app/features/data/model/quiz_model.dart';
-import 'package:quiz_app/features/presentation/bloc/quiz_bloc.dart';
+import 'package:quiz_app/features/quiz/data/model/quiz_model.dart';
+import 'package:quiz_app/features/quiz/presentation/bloc/quiz_bloc.dart';
 
 class Options extends StatefulWidget {
   final List<Answer> answer;

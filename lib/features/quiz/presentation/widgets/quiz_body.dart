@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:quiz_app/features/data/model/quiz_model.dart';
-import 'package:quiz_app/features/domain/entity/quiz.dart';
-import 'package:quiz_app/features/presentation/bloc/quiz_bloc.dart';
-import 'package:quiz_app/features/presentation/widgets/options.dart';
+import 'package:quiz_app/features/quiz/data/model/quiz_model.dart';
+import 'package:quiz_app/features/quiz/domain/entity/quiz.dart';
+import 'package:quiz_app/features/quiz/presentation/bloc/quiz_bloc.dart';
+import 'package:quiz_app/features/quiz/presentation/widgets/options.dart';
 
 class QuizBody extends StatefulWidget {
   final Quiz quiz;
@@ -24,7 +24,7 @@ class _QuizBodyState extends State<QuizBody> {
     return Column(mainAxisAlignment: MainAxisAlignment.center, children: [
       Text(
         quiz.question,
-        style: const TextStyle(fontSize: 20, color: Colors.green),
+        style: const TextStyle(fontSize: 20, color: Colors.blueGrey),
       ),
       const SizedBox(height: 30),
       Options(answer: answers),
@@ -32,7 +32,7 @@ class _QuizBodyState extends State<QuizBody> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           MaterialButton(
-            color: Colors.green,
+            color: Colors.blueGrey,
             onPressed: () {
               BlocProvider.of<QuizBloc>(context).add(Previous());
             },
@@ -43,7 +43,7 @@ class _QuizBodyState extends State<QuizBody> {
           ),
           context.read<QuizBloc>().displaySubmitButton
               ? MaterialButton(
-                  color: Colors.green,
+                  color: Colors.blueGrey,
                   onPressed: () {
                     BlocProvider.of<QuizBloc>(context).add(Submit());
                   },
@@ -53,7 +53,7 @@ class _QuizBodyState extends State<QuizBody> {
                   ),
                 )
               : MaterialButton(
-                  color: Colors.green,
+                  color: Colors.blueGrey,
                   onPressed: () {
                     BlocProvider.of<QuizBloc>(context).add(Next());
                   },
